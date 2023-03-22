@@ -9,7 +9,7 @@
 <input #input (keydown)="(0)" type="tex" />
 <p>{{ input.value }}</p>
 <p *ngIf="pokemonSelected">
-  Vous avez sélectionné le pokemon:{{ pokemonSelected?.name }}
+  Vous avez sélectionné le pokemon:{{ pokemonSelected.name }}
 </p>
 <p *ngIf="!pokemonSelected">Aucun pokémon n'a été trouvé</p>
 <!-- '?' = if not defined then don't display-->
@@ -17,9 +17,13 @@
 <div class="container">
   <div class="row">
     <div *ngFor="let pokemon of pokemonList" class="col m4 s6">
-      <div (click)="selectPokemon(pokemon)" class="card horizontal">
+      <div
+        (click)="selectPokemon(pokemon)"
+        class="card horizontal"
+        appBorderCard
+      >
         <div class="card-image">
-          <img [src]="pokemon.picture" />
+          <img alt="pokemon image" [src]="pokemon.picture" />
         </div>
         <div class="card-stacked">
           <div class="card-content">
