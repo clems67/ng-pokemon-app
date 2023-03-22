@@ -1,6 +1,14 @@
 <h1>Liste des Pokémons</h1>
-<input type="number" (click)="selectOnEvent($event)">
-<br>
+<input
+  #input
+  type="number"
+  (keyup)="selectPokemonId(input.value)"
+  (click)="selectOnEvent($event)"
+/>
+<br />
+<input #input (keydown)="(0)" type="tex" />
+<p>{{ input.value }}</p>
+<br />
 <tbody>
   <tr *ngFor="let pokemon of pokemonList">
     <td (click)="selectPokemon(pokemon)">{{ pokemon.name }}</td>

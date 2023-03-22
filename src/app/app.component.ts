@@ -16,14 +16,21 @@ export class AppComponent implements OnInit {
   }
 
   selectPokemon(pokemon: Pokemon) {
-    console.log(`Vous avez cliqué sur le pokémon ${pokemon.name}`);
+    console.log(`Vous avez cliqué sur le pokémon ${pokemon.name} (list)`);
   }
 
   selectOnEvent(event: MouseEvent) {
     const index: number = +(event.target as HTMLInputElement).value; //+ or use Number()
     //if input empty => null => 0
     console.log(
-      `Vous avez cliqué sur le pokémon ${this.pokemonList[index].name}`
+      `Vous avez cliqué sur le pokémon ${this.pokemonList[index].name} (event)`
+    );
+  }
+
+  selectPokemonId(pokemonId: string) {
+    const id = +pokemonId;
+    console.log(
+      `Vous avez sélectionné l'id du pokémon ${this.pokemonList[id].name}`
     );
   }
 }
