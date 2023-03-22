@@ -8,7 +8,8 @@
 <br />
 <input #input (keydown)="(0)" type="tex" />
 <p>{{ input.value }}</p>
-<br />
+<p>{{ pokemonSelected?.name }}</p>
+<!-- '?' = if not defined then don't display-->
 <tbody>
   <tr *ngFor="let pokemon of pokemonList">
     <td (click)="selectPokemon(pokemon)">{{ pokemon.name }}</td>

@@ -9,6 +9,7 @@ import { Pokemon } from "./pokemon";
 })
 export class AppComponent implements OnInit {
   pokemonList: Pokemon[] = POKEMONS;
+  pokemonSelected: Pokemon | undefined;
 
   ngOnInit() {
     console.table(this.pokemonList);
@@ -28,9 +29,15 @@ export class AppComponent implements OnInit {
   }
 
   selectPokemonId(pokemonId: string) {
-    const id = +pokemonId;
-    console.log(
-      `Vous avez sélectionné l'id du pokémon ${this.pokemonList[id].name}`
+    const pokemon: Pokemon | undefined = this.pokemonList.find(
+      (pokemon) => pokemon.id == +pokemonId
     );
+    if (pokemon) {
+      console.log(`Vous avez sélectionné le pokémon ${pokemon.name}`);
+      this.pokemonSelected = pokemon;
+    } else {
+      console.log(`Vous avez sélectionné un pokémon qui n'existe pas`);
+      this.pokemonSelected = pokemon;
+    }
   }
 }
