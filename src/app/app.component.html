@@ -2,13 +2,16 @@
 <input
   #input
   type="number"
-  (keyup)="selectPokemonId(input.value)"
+  (keyup.enter)="selectPokemonId(input.value)"
   (click)="selectOnEvent($event)"
 />
 <br />
 <input #input (keydown)="(0)" type="tex" />
 <p>{{ input.value }}</p>
-<p>{{ pokemonSelected?.name }}</p>
+<p *ngIf="pokemonSelected">
+  Vous avez sélectionné le pokemon:{{ pokemonSelected?.name }}
+</p>
+<p *ngIf="!pokemonSelected">Aucun pokémon n'a été trouvé</p>
 <!-- '?' = if not defined then don't display-->
 <tbody>
   <tr *ngFor="let pokemon of pokemonList">
