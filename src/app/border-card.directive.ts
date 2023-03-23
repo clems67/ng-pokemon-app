@@ -1,4 +1,4 @@
-import { Directive, ElementRef, HostListener } from "@angular/core";
+import { Directive, ElementRef, HostListener, Input } from "@angular/core";
 
 @Directive({
   selector: "[appBorderCard]",
@@ -9,8 +9,10 @@ export class BorderCardDirective {
     this.setBorder("#f5f5f5");
   }
 
+  @Input("appBorderCard") borderColor: string;
+
   @HostListener("mouseenter") onMouseEnter() {
-    this.setBorder("#009688");
+    this.setBorder(this.borderColor || "green");
   }
 
   @HostListener("mouseleave") onMouseLeave() {
@@ -22,7 +24,7 @@ export class BorderCardDirective {
   }
 
   private setBorder(color: string) {
-    let border = "solid 4px" + color;
+    let border = "solid 4px " + color;
     this.el.nativeElement.style.border = border;
   }
 }
