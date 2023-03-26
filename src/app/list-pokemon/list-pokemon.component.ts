@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
 import { POKEMONS } from "../mock-pokemon-list";
 import { Pokemon } from "../pokemon";
 
@@ -39,5 +40,11 @@ export class ListPokemonComponent implements OnInit {
       console.log(`Vous avez sélectionné un pokémon qui n'existe pas`);
       this.pokemonSelected = pokemon;
     }
+  }
+
+  constructor(private router: Router) {}
+
+  goToPokemon(pokemon: Pokemon) {
+    this.router.navigate(["/pokemon", pokemon.id]);
   }
 }

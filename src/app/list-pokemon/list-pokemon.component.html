@@ -18,6 +18,7 @@
     <div *ngFor="let pokemon of pokemonList" class="col m4 s6">
       <div
         (click)="selectPokemon(pokemon)"
+        (click)="goToPokemon(pokemon)"
         class="card horizontal"
         appBorderCard
       >
