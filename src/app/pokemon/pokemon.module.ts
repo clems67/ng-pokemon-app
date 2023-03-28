@@ -9,7 +9,7 @@ import { PokemonService } from "./pokemon.service";
 
 const pokemonRoutes: Routes = [
   { path: "pokemons", component: ListPokemonComponent },
-  { path: "pokemon/:id", component: DetailPokemonComponent },
+  { path: "pokemons/:id", component: DetailPokemonComponent },
 ];
 
 @NgModule({
