@@ -10,14 +10,31 @@ import { FormsModule } from "@angular/forms";
 import { PokemonFormsComponent } from "./pokemon-forms/pokemon-forms.component";
 import { EditPokemonComponent } from "./edit-pokemon/edit-pokemon.component";
 import { AddPokemonComponent } from "./add-pokemon/add-pokemon.component";
-import { SearchPokemonComponent } from './search-pokemon/search-pokemon.component';
-import { LoaderComponent } from './loader/loader.component';
+import { SearchPokemonComponent } from "./search-pokemon/search-pokemon.component";
+import { LoaderComponent } from "./loader/loader.component";
+import { AuthGuard } from "../auth.guard";
 
 const pokemonRoutes: Routes = [
-  { path: "edit/pokemons/:id", component: EditPokemonComponent },
-  { path: "pokemon/add", component: AddPokemonComponent },
-  { path: "pokemons", component: ListPokemonComponent },
-  { path: "pokemons/:id", component: DetailPokemonComponent },
+  {
+    path: "edit/pokemons/:id",
+    component: EditPokemonComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: "pokemon/add",
+    component: AddPokemonComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: "pokemons",
+    component: ListPokemonComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: "pokemons/:id",
+    component: DetailPokemonComponent,
+    canActivate: [AuthGuard],
+  },
 ];
 
 @NgModule({
