@@ -11,11 +11,13 @@ import { PokemonService } from "../pokemon.service";
 export class PokemonFormsComponent implements OnInit {
   @Input() pokemon: Pokemon;
   types: string[];
+  isAddForm: boolean;
 
   constructor(private pokemonService: PokemonService, private router: Router) {}
 
   ngOnInit() {
     this.types = this.pokemonService.getPokemonTypeList();
+    this.isAddForm = this.router.url.includes("add");
     console.log("forms pokemon :");
     console.log(this.pokemon);
   }
@@ -36,9 +38,17 @@ export class PokemonFormsComponent implements OnInit {
   }
 
   onSubmit() {
-    this.pokemonService.updatePokemon(this.pokemon).subscribe((pokemon) => {
-      this.router.navigate(["/pokemons", this.pokemon.id]);
-    });
+    if (this.isAddForm) {
+      this.pokemonService
+        .addPokemon(this.pokemon)
+        .subscribe((pokemon: Pokemon) =>
+          this.router.navigate(["/pokemons", pokemon.id])
+        );
+    } else {
+      this.pokemonService.updatePokemon(this.pokemon).subscribe(() => {
+        this.router.navigate(["/pokemons", this.pokemon.id]);
+      });
+    }
   }
 
   isTypesValid(type: string): boolean {
